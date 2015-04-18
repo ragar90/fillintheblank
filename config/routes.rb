@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :blank_walls
+  resources :artists
 
   resources :owners
+
+  resources :blank_walls
 
   get 'home/index'
 

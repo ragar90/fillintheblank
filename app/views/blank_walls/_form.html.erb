@@ -1,37 +1,50 @@
-<%= form_for(@blank_wall) do |f| %>
+<%= form_for(@blank_wall, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
   <% if @blank_wall.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@blank_wall.errors.count, "error") %> prohibited this blank_wall from being saved:</h2>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@blank_wall.errors.count, "error") %> prohibited this blank_wall from being saved:</h4>
 
       <ul>
-      <% @blank_wall.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @blank_wall.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.text_field :owner_id %>
+  <div class="form-group">
+    <%= f.label :owner, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :owner, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :height %><br>
-    <%= f.number_field :height %>
+  <div class="form-group">
+    <%= f.label :height, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :height, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :width %><br>
-    <%= f.number_field :width %>
+  <div class="form-group">
+    <%= f.label :width, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :width, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :min_budget %><br>
-    <%= f.number_field :min_budget %>
+  <div class="form-group">
+    <%= f.label :min_budget, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :min_budget, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :max_budget %><br>
-    <%= f.text_field :max_budget %>
+  <div class="form-group">
+    <%= f.label :max_budget, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :max_budget, :class => "form-control" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

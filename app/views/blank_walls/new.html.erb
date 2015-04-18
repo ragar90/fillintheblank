@@ -1,5 +1,9 @@
-<h1>New Blank Wall</h1>
+<div class="page-header">
+  <%= link_to blank_walls_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <h1>New blank_wall</h1>
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', blank_walls_path %>
