@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @artist.email %>
+</p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @artist.twitter %>
+</p>
+
+<p>
+  <strong>Facebook:</strong>
+  <%= @artist.facebook %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @artist.nickname %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @artist.name %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @artist.state %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @artist.city %>
+</p>
+
+<p>
+  <strong>Portafolio 1:</strong>
+  <%= %>
+  <%= image_tag @artist.portafolio_1 %>
+</p>
+
+<p>
+  <strong>Portafolio 2:</strong>
+  <%= image_tag @artist.portafolio_2 %>
+</p>
+
+<p>
+  <strong>Portafolio 3:</strong>
+  <%= image_tag @artist.portafolio_3 %>
+</p>
+
+<%#= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>

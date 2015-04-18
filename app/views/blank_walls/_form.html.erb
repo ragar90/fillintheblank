@@ -1,0 +1,37 @@
+<%= form_for(@blank_wall) do |f| %>
+  <% if @blank_wall.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blank_wall.errors.count, "error") %> prohibited this blank_wall from being saved:</h2>
+
+      <ul>
+      <% @blank_wall.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :owner_id %><br>
+    <%= f.text_field :owner_id %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.number_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :width %><br>
+    <%= f.number_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :min_budget %><br>
+    <%= f.number_field :min_budget %>
+  </div>
+  <div class="field">
+    <%= f.label :max_budget %><br>
+    <%= f.text_field :max_budget %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

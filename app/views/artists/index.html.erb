@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Artists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Twitter</th>
+      <th>Facebook</th>
+      <th>Nickname</th>
+      <th>Name</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Portafolio 1</th>
+      <th>Portafolio 2</th>
+      <th>Portafolio 3</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= artist.email %></td>
+        <td><%= artist.twitter %></td>
+        <td><%= artist.facebook %></td>
+        <td><%= artist.nickname %></td>
+        <td><%= artist.name %></td>
+        <td><%= artist.state %></td>
+        <td><%= artist.city %></td>
+        <td><%= artist.portafolio_1 %></td>
+        <td><%= artist.portafolio_2 %></td>
+        <td><%= artist.portafolio_3 %></td>
+        <td><%= link_to 'Show', artist %></td>
+        <td><%#= link_to 'Edit', edit_artist_path(artist) %></td>
+        <td><%#= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Artist', new_artist_path %>

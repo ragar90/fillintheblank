@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  database: graphmywall_dev
+  host: localhost
+  username: postgres
+  password: jhlive
+test:
+  adapter: postgresql
+  database: graphmywall_test
+  host: localhost
+  username: postgres
+  password: jhlive
+
+production:
+  adapter: postgresql
+  database: graphmywall_prod
+  host: localhost
+  username: postgres
+  password: jhlive

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @blank_wall.owner %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @blank_wall.height %>
+</p>
+
+<p>
+  <strong>Width:</strong>
+  <%= @blank_wall.width %>
+</p>
+
+<p>
+  <strong>Min budget:</strong>
+  <%= @blank_wall.min_budget %>
+</p>
+
+<p>
+  <strong>Max budget:</strong>
+  <%= @blank_wall.max_budget %>
+</p>
+
+<%= link_to 'Edit', edit_blank_wall_path(@blank_wall) %> |
+<%= link_to 'Back', blank_walls_path %>

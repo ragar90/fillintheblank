@@ -1,0 +1,2 @@
+module BlankWallsHelper
+end
