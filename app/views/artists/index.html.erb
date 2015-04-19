@@ -17,12 +17,6 @@
             <th>Name</th>
             <th>State</th>
             <th>City</th>
-            <th>Portafolio 1</th>
-            <th>Portafolio 2</th>
-            <th>Portafolio 3</th>
-            <th></th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
 
@@ -35,12 +29,6 @@
             <td><%= artist.name %></td>
             <td><%= artist.state %></td>
             <td><%= artist.city %></td>
-            <td><%= artist.portafolio_1 %></td>
-            <td><%= artist.portafolio_2 %></td>
-            <td><%= artist.portafolio_3 %></td>
-            <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>

@@ -1,9 +1,15 @@
 CarrierWave.configure do |config|
-  #config.fog_provider = 'fog-aws'              
-  config.fog_credentials = {
-    provider:              'AWS',              
-    aws_access_key_id:     ENV['S3_ACCES_KEY'],
-    aws_secret_access_key: ENV['S3_ACCES_KEY'],
-  }
-  config.fog_directory  = ENV['S3_BUCKET']
-end#
+    config.storage    =  :aws                  # required
+    config.aws_bucket =  ENV['S3_BUCKET']      # required
+    config.aws_acl    =  :public_read
+
+    config.aws_credentials = {
+      access_key_id:      ENV['S3_ACCES_KEY'],       # required
+      secret_access_key:  ENV['S3_SECRET_KEY']     # required
+    }
+
+    config.aws_attributes = {
+                              'Cache-Control'=>"max-age=#{365.day.to_i}",
+                              'Expires'=>'Tue, 29 Dec 2015 23:23:23 GMT'
+                            }
+  end
