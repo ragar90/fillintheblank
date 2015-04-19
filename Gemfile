@@ -33,6 +33,8 @@ gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootstrap-generators', '~> 3.3.1'
+gem 'bootstrap-slider-rails'
+gem "rails_12factor"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
