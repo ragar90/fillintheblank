@@ -31,9 +31,22 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><%= link_to "Artist", artists_path %></li>
-          <li><%= link_to "Blank Walls available", blank_walls_path %></li>
+          <% if owner_signed_in? %>
+            <li><%= link_to "Artist", artists_path %></li>
+            <li><%= link_to "My Posted Walls", blank_walls_path %></li>
+          <% else %>
+            <li><%= link_to "Find a Wall", blank_walls_path %></li>
+          <% end %>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if artist_signed_in? %>
+            <li><%= link_to "Sign out (Artist)", destroy_artist_session_path, method: :delete %></li>
+            <li><%= link_to "My Profile", my_profile_artist_path(id: current_artist.id) %></li>
+          <% elsif owner_signed_in? %>
+            <li><%= link_to "Sign out (Owner)", destroy_owner_session_path, method: :delete %></li>  
+          <% else %>
+            <li><%= link_to "Sign in", sign_in_path %></li>
+          <% end %>
       </div>
     </div>
   </nav>
@@ -47,8 +60,6 @@
 
     <%= yield %>
   </div>
-  <script type="text/javascript">
-    $(".price-slider").slider({});
-  </script>
+  <%= yield :javascript_fixes %>
 </body>
 </html>

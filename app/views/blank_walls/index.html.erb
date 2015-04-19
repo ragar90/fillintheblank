@@ -1,36 +1,37 @@
 <div class="page-header">
-  <%= link_to new_blank_wall_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Blank wall
+  <% if owner_signed_in? %>
+    <%= link_to new_blank_wall_path, :class => 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Blank wall
+    <% end %>
+  <% else %>
+    <%= render partial: "partials/wall_filters"%>
   <% end %>
   <h1>Listing blank_walls</h1>
 </div>
-<%= render partial: "partials/wall_filters"%>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Owner</th>
-            <th>Height</th>
-            <th>Width</th>
-            <th>Min budget</th>
-            <th>Max budget</th>
-            <th></th>
-        <th></th>
-        <th></th>
+        <th>Owner</th>
+        <th>Area</th>
+        <th>Budget</th>
+        <% if owner_signed_in? %>
+          <th></th>
+          <th></th>       
+        <% end %>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @blank_walls) do |blank_wall| %>
-            <td><%= blank_wall.owner %></td>
-            <td><%= blank_wall.height %></td>
-            <td><%= blank_wall.width %></td>
-            <td><%= blank_wall.min_budget %></td>
-            <td><%= blank_wall.max_budget %></td>
-            <td><%= link_to 'Show', blank_wall %></td>
-        <td><%= link_to 'Edit', edit_blank_wall_path(blank_wall) %></td>
-        <td><%= link_to 'Destroy', blank_wall, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to blank_wall.owner.nickname, blank_wall %></td>
+        <td><%= blank_wall.area %> ft<sup>2</sup></td>
+        <td>$<%= blank_wall.min_budget %> - $<%= blank_wall.max_budget %></td>
+        <% if owner_signed_in? %>
+          <td><%= link_to 'Edit', edit_blank_wall_path(blank_wall) %></td>
+          <td><%= link_to 'Destroy', blank_wall, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       <% end %>
     </tbody>
   </table>

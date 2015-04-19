@@ -1,16 +1,21 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
-  http_basic_authenticate_with name: "fillmywall", password: "jhlive300590/*-+", except: :new
+  before_action :set_artist, only: [:show, :edit, :update, :destroy, :my_profile]
+  before_action :authenticate_artist!, only: [:edit, :update]
+  before_action :authenticate_owner!, only: [:index, :show]
 
   # GET /artists
   # GET /artists.json
   def index
-    @artists = Artist.all
+    @artists = Artist.have_specifed_rate.where("confirmed_at is not null")
   end
 
   # GET /artists/1
   # GET /artists/1.json
   def show
+  end
+
+  def my_profile
+    render action: :show
   end
 
   # GET /artists/new
@@ -43,7 +48,7 @@ class ArtistsController < ApplicationController
   def update
     respond_to do |format|
       if @artist.update(artist_params)
-        format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
+        format.html { redirect_to my_profile_artist_path(id:@artist.id), notice: 'Artist was successfully updated.' }
         format.json { render :show, status: :ok, location: @artist }
       else
         format.html { render :edit }
@@ -55,7 +60,8 @@ class ArtistsController < ApplicationController
   # DELETE /artists/1
   # DELETE /artists/1.json
   def destroy
-    @artist.destroy
+    @artist.active = false
+    @artist.save
     respond_to do |format|
       format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
       format.json { head :no_content }
@@ -70,6 +76,6 @@ class ArtistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
-      params.require(:artist).permit(:email, :twitter, :facebook, :nickname, :name, :state, :city, :portafolio_1, :portafolio_2, :portafolio_3)
+      params.require(:artist).permit!
     end
 end

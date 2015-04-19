@@ -1,11 +1,12 @@
 class BlankWallsController < ApplicationController
   before_action :set_blank_wall, only: [:show, :edit, :update, :destroy]
-  http_basic_authenticate_with name: "fillmywall", password: "jhlive300590/*-+"
+  before_action :authenticate_owner!, except:[:index, :show]
+  before_action :authenticate_user!, only: [:index, :show]
 
   # GET /blank_walls
   # GET /blank_walls.json
   def index
-    @blank_walls = BlankWall.all
+    @blank_walls = owner_signed_in? ? current_owner.blank_walls : BlankWall.all
   end
 
   # GET /blank_walls/1
@@ -16,6 +17,10 @@ class BlankWallsController < ApplicationController
   # GET /blank_walls/new
   def new
     @blank_wall = BlankWall.new
+    @blank_wall.owner_id = current_owner.id
+    @blank_wall.min_budget = 100
+    @blank_wall.max_budget = 500
+    @blank_wall.area = 25
   end
 
   # GET /blank_walls/1/edit
@@ -26,7 +31,9 @@ class BlankWallsController < ApplicationController
   # POST /blank_walls.json
   def create
     @blank_wall = BlankWall.new(blank_wall_params)
-
+    budget_range = blank_wall_params[:budget_range].split(",")
+    @blank_wall.min_budget = budget_range[0]
+    @blank_wall.max_budget = budget_range[1]
     respond_to do |format|
       if @blank_wall.save
         format.html { redirect_to @blank_wall, notice: 'Blank wall was successfully created.' }
@@ -70,6 +77,6 @@ class BlankWallsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blank_wall_params
-      params.require(:blank_wall).permit(:owner_id, :height, :width, :min_budget, :max_budget)
+      params.require(:blank_wall).permit!
     end
 end

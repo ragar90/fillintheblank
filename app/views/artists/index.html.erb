@@ -1,35 +1,52 @@
 <div class="page-header">
-  <%= link_to new_artist_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Artist
-  <% end %>
   <h1>Listing artists</h1>
 </div>
 
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-            <th>Email</th>
-            <th>Twitter</th>
-            <th>Facebook</th>
-            <th>Nickname</th>
-            <th>Name</th>
-            <th>State</th>
-            <th>City</th>
-      </tr>
-    </thead>
+  <% unless @artists.length > 0 %>
+    <h2>No results were Found</h2>
+  <% else %>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+              <th>Artist</th>
+              <th>Rate</th>
+              <th></th>
+              <th></th>
+              <th></th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <%= content_tag_for(:tr, @artists) do |artist| %>
-            <td><%= artist.email %></td>
-            <td><%= artist.twitter %></td>
-            <td><%= artist.facebook %></td>
-            <td><%= artist.nickname %></td>
-            <td><%= artist.name %></td>
-            <td><%= artist.state %></td>
-            <td><%= artist.city %></td>
-      <% end %>
-    </tbody>
-  </table>
+      <tbody>
+        <%= content_tag_for(:tr, @artists) do |artist| %>
+          <td><%= link_to artist.artist_identifier, artist_path(id: artist.id) %></td>
+          <td>$<%= artist.min_rate %> - $<%= artist.max_rate %></td>
+
+          <td>
+            <% unless artist.email_confirmed? %>
+              <span class="label label-danger">Email not Confirmed</span>
+            <% else %>
+              <span class="label label-success">Email Confirmed</span>
+            <% end %>
+          </td>
+
+          <td>
+            <% unless artist.phone_confirmed? %>
+              <span class="label label-danger">Phone not Confirmed</span>
+            <% else %>
+              <span class="label label-success">Phone Confirmed</span>
+            <% end %>
+          </td>
+
+          <td>
+            <% unless artist.profile_completed? %>
+              <span class="label label-danger">Profile not Completed</span>
+            <% else %>
+              <span class="label label-success">Profile Completed</span>
+            <% end %>
+          </td>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

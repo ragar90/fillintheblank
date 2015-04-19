@@ -12,39 +12,68 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :owner_id, :class => "form-control" %>
+
   <div class="form-group">
-    <%= f.label :owner, :class => "col-sm-2 control-label" %>
+    <%= f.label :area, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :owner, :class => "form-control" %>
+      <%= f.text_field :area, :class => "form-control", data:{:"slider-min" => 1, :"slider-max" => 100, :"slider-step"=>1, :"slider-value" => 10} %>
     </div>
   </div>
+
   <div class="form-group">
-    <%= f.label :height, :class => "col-sm-2 control-label" %>
+    <%= f.label :budget_range, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.number_field :height, :class => "form-control" %>
+      <%= f.text_field :budget_range, :class => "form-control", data:{:"slider-min" => 10, :"slider-max" => 1000, :"slider-step"=>10, :"slider-value" => 100, :"slider-value" => "[#{@blank_wall.budget_range}]"} %>
     </div>
   </div>
+
   <div class="form-group">
-    <%= f.label :width, :class => "col-sm-2 control-label" %>
+    <%= f.label :done_by, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.number_field :width, :class => "form-control" %>
+      <%= f.date_field :done_by, :class => "form-control" %>
     </div>
   </div>
+
+
   <div class="form-group">
-    <%= f.label :min_budget, :class => "col-sm-2 control-label" %>
+    <%= f.label :description, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.number_field :min_budget, :class => "form-control" %>
+      <%= f.text_area :description, rows: 3, :class => "form-control" %>
     </div>
   </div>
+
   <div class="form-group">
-    <%= f.label :max_budget, :class => "col-sm-2 control-label" %>
+    <%= f.label :picture_1, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :max_budget, :class => "form-control" %>
+      <%= f.file_field :picture_1, rows: 3, :class => "form-control" %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :picture_2, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.file_field :picture_2, rows: 3, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :picture_3, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.file_field :picture_3, rows: 3, :class => "form-control" %>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit :class => "btn btn-primary" %>
     </div>
   </div>
+<% end %>
+
+<%= content_for :javascript_fixes %>
+  <script type="text/javascript">
+    $("#blank_wall_area").slider({});
+    $("#blank_wall_budget_range").slider({});
+  </script>
 <% end %>

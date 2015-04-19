@@ -1,78 +1,97 @@
 <div class="page-header">
-  <%= link_to artists_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_artist_path(@artist), :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+  <% if artist_signed_in? %>
+    <%= link_to artists_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>
+    <%= link_to edit_artist_path(@artist), :class => 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit my Profile
+    <% end %>
   <% end %>
   <h1>Show artist</h1>
 </div>
 <%= image_tag @artist.avatar_picture, style: "width: 200px;margin-bottom: 10px;" %>
 <dl class="dl-horizontal">
+  <dt>Artist:</dt>
+  <dd><%= @artist.artist_identifier %></dd>
+
+  <dt>Rate:</dt>
+  <dd>$<%= @artist.min_rate %> - $<%= @artist.max_rate %> Ft<sup>2</sup></dd>
+
   <dt>Email:</dt>
-  <dd><%= @artist.email %></dd>
+  <dd>
+    <% unless @artist.email_confirmed? %>
+      <span class="label label-danger">Not Confirmed</span>
+    <% else %>
+      <span class="label label-success">Confirmed</span>
+    <% end %>
+  </dd>
 
-  <dt>Twitter:</dt>
-  <dd><%= @artist.twitter %></dd>
+  <dt>Phone:</dt>
+  <dd>
+    <% unless @artist.phone_confirmed? %>
+      <span class="label label-danger">Not Confirmed</span>
+    <% else %>
+      <span class="label label-success">Confirmed</span>
+    <% end %>
+  </dd>
 
-  <dt>Facebook:</dt>
-  <dd><%= @artist.facebook %></dd>
+  <dt>Profile:</dt>
+  <dd>
+    <% unless @artist.profile_completed? %>
+      <span class="label label-danger">Not Completed</span>
+    <% else %>
+      <span class="label label-success">Completed</span>
+    <% end %>
+  </dd>
 
-  <dt>Nickname:</dt>
-  <dd><%= @artist.nickname %></dd>
+            
 
-  <dt>Name:</dt>
-  <dd><%= @artist.name %></dd>
 
-  <dt>State:</dt>
-  <dd><%= @artist.state %></dd>
-
-  <dt>City:</dt>
-  <dd><%= @artist.city %></dd>
-
-  <p>
+<p>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <%= image_tag @artist.portafolio_1%>
-      <div class="carousel-caption">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <%= image_tag @artist.portafolio_1%>
+        <div class="carousel-caption">
+        </div>
       </div>
-    </div>
+      
+      <% unless @artist.portafolio_2.url.blank? %>
+        <div class="item">
+          <%= image_tag @artist.portafolio_2.url%>
+          <div class="carousel-caption">
+          </div>
+        </div>
+      <% end %>
 
-    <div class="item">
-      <%= image_tag @artist.portafolio_2%>
-      <div class="carousel-caption">
+      <% unless @artist.portafolio_3.url.blank? %>
+        <div class="item">
+          <%= image_tag @artist.portafolio_3.url%>
+          <div class="carousel-caption">
+          </div>
+        </div>
+      <% end %>
       </div>
-    </div>
-
-    <div class="item">
-      <%= image_tag @artist.portafolio_3%>
-      <div class="carousel-caption">
-      </div>
-    </div>
-
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 </p>
 
 </dl>
