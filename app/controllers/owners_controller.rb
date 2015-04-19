@@ -1,5 +1,6 @@
 class OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: "fillmywall", password: "jhlive300590/*-+"
 
   # GET /owners
   # GET /owners.json

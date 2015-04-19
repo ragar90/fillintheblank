@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: "fillmywall", password: "jhlive300590/*-+", except: :new
 
   # GET /artists
   # GET /artists.json

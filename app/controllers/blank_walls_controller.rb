@@ -1,5 +1,6 @@
 class BlankWallsController < ApplicationController
   before_action :set_blank_wall, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: "fillmywall", password: "jhlive300590/*-+"
 
   # GET /blank_walls
   # GET /blank_walls.json
