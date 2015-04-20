@@ -17,4 +17,8 @@ class BlankWall < ActiveRecord::Base
 		self.min_budget = range[0]
 		self.max_budget = range[1]
 	end
+
+	def self.find_with_filter(filter)
+		self.all
+	end
 end

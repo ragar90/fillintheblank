@@ -7,7 +7,7 @@ class BlankWallsController < ApplicationController
   # GET /blank_walls.json
   def index
     @filter = Filter.build_new_filter(params[:filter])
-    unless @filter.is_default?
+    unless @filter.is_default
       @blank_walls = owner_signed_in? ? current_owner.blank_walls : BlankWall.find_with_filter(@filter)
     else
       @blank_walls = owner_signed_in? ? current_owner.blank_walls : BlankWall.all

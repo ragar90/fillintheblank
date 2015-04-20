@@ -1,9 +1,40 @@
-<div>
-	<h4>
-		Filter by area: <b>100 ft<sup>2</sup></b> <input id="area-slider" type="text"  data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="500"/> <b>1000+ ft<sup>2</sup></b>
-	</h4>
 
-	<h4>
-		Filter by budget: <b>$100</b> <input id="price-slider" type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> <b>$1000+</b>
-	</h4>
-</div>
+<h2>Search Wall Post</h2>
+<%= form_for @filter, url: blank_walls_path, method: :get, :html => { :class => "form-horizontal", :role => "form" } do |f| -%>
+	<div class="form-group">
+    <%= f.label :area, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :area, :class => "form-control", data:{:"slider-min" => 1, :"slider-max" => 100, :"slider-step"=>1, :"slider-value" => 10} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :budget_range, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :budget_range, :class => "form-control", data:{:"slider-min" => 10, :"slider-max" => 1000, :"slider-step"=>10, :"slider-value" => 100, :"slider-value" => "[#{@filter.budget_range}]"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :wall_type, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+    	<%= f.select :wall_type, Filter.wall_types, {prompt: "--"}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Find me walls", :class => "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>
+
+
+<%= content_for :javascript_fixes do %>
+  <script type="text/javascript">
+    $("#filter_area").slider({});
+    $("#filter_budget_range").slider({});
+  </script>
+<% end %>
