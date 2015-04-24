@@ -1,0 +1,8 @@
+<ul class="nav navbar-nav">
+  <% if owner_signed_in? %>
+    <li><%= link_to "Artist", artists_path %></li>
+    <li><%= link_to "My Posted Walls", blank_walls_path %></li>
+  <% else %>
+    <li><%= link_to "Find a Wall", blank_walls_path %></li>
+  <% end %>
+</ul>

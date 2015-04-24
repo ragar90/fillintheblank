@@ -8,3 +8,26 @@
 .owner-signin{
 	border-left: 1px solid #A5A5A5;
 }
+#direct-actions{
+	background-color: #6F9E39;
+	color: #fff;
+}
+#navbar-header{
+	.navbar{
+		margin-bottom: 0px;
+	}
+	#carousel-id{
+		max-height: 500px;
+  	overflow: hidden;
+	  .item {
+	  	.carousel-caption{
+	  		top: 300px;
+	  		bottom: 0px;
+	  	}
+	  	img {
+	    		width: 100%;
+	    		height: auto;
+	  	}
+		}
+	}
+}

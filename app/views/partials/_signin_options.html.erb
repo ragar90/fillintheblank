@@ -1,0 +1,10 @@
+<ul class="nav navbar-nav navbar-right">
+  <% if artist_signed_in? %>
+    <li><%= link_to "Sign out (Artist)", destroy_artist_session_path, method: :delete %></li>
+    <li><%= link_to "My Profile", my_profile_artist_path(id: current_artist.id) %></li>
+  <% elsif owner_signed_in? %>
+    <li><%= link_to "Sign out (Owner)", destroy_owner_session_path, method: :delete %></li>  
+  <% else %>
+    <li><%= link_to "Sign in", sign_in_path %></li>
+  <% end %>
+</ul>
